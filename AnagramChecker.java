@@ -1,10 +1,11 @@
 package assign04;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.TreeMap;
 
-import com.sun.java.util.jar.pack.Package.File;
+//import com.sun.java.util.jar.pack.Package.File;
 
 public class AnagramChecker {
 
@@ -66,9 +67,11 @@ public class AnagramChecker {
 	public static String[] getLargestAnagramGroup(String filename) {
 		// open file
 
-		String[] possibleAnagrams = filename.split("\n");
+		File f = new File("C:/Users/Jose/Documents/GitHub/assign04/sample_word_list.txt");//("C:/Users/Jose/Documents/GitHub/assign04/" + filename);
+		String fileStr = f.toString();
+		String[] possibleAnagrams = fileStr.split("\n");
 
-		return possibleAnagrams;
+		return getLargestAnagramGroup(possibleAnagrams);
 	}
 
 	public static String[] getLargestAnagramGroup(String[] list) {
@@ -77,21 +80,33 @@ public class AnagramChecker {
 		TreeMap<String, ArrayList<String>> anagrams = new TreeMap<>();
 		int largestSoFar = 0;
 
+		String keyOfLargest = "";
 		
 		// search every string for possible anagrams
 		for (i = 0; i < list.length; i++) {
-			String str1 = sort(list[i]);
+			String sortedStr = sort(list[i]);
 			ArrayList<String> tempList = new ArrayList<>();
-			if (!anagrams.containsKey(str1)) {
-				for (j = 0; j < 1; j++) {
-					String str2 = list[j];
-					if (areAnagrams(str1, str2)) {
-						tempList.add(str2);
+			
+			if (!anagrams.containsKey(sortedStr)) {
+				for (j = 0; j < list.length; j++) {
+					String checkStr = list[j];
+					
+					if (areAnagrams(sortedStr, checkStr)) {
+						tempList.add(checkStr);
 					}
 				}
-				
+				anagrams.put(sortedStr, tempList);
+				if(tempList.size() > largestSoFar)
+				{
+					largestSoFar = tempList.size();
+					keyOfLargest = sortedStr;
+				}
 			}
 		}
-		return null;
+		int arraySize = anagrams.get(keyOfLargest).size();
+		String[] returnList = new String[arraySize];
+		anagrams.get(keyOfLargest).toArray(returnList);
+		
+		return returnList;
 	}
 }

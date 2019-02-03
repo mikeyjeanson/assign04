@@ -16,5 +16,30 @@ class AnagramCheckerTest {
 		assertTrue(AnagramChecker.areAnagrams("cellar", "caller"));
 	}
 
+	@Test
+	void testGetLargestAnagramGroup()
+	{
+		String[] strList = {"carets" , 
+				"Caller",
+				"eat",
+				"cellar", 
+				"recall",
+				"Caters",
+				"Ate",
+				"caster",
+				"aspired",
+				"allergy", 
+				"despair"};
+		
+		String[] anagramList = { "carets", "Caters", "caster"};
+		//assertTrue(anagramList == (AnagramChecker.getLargestAnagramGroup(strList)));
+		assertEquals(anagramList, AnagramChecker.getLargestAnagramGroup(strList));
+	}
+	
+	@Test
+	void testGetLargestAnagramGroup2()
+	{
+		assertEquals("aspired", AnagramChecker.getLargestAnagramGroup("sample_word_list.txt"));
+	}
 }
  
