@@ -7,8 +7,13 @@ import org.junit.jupiter.api.Test;
 class AnagramCheckerTest {
 
 	@Test
-	void test() {
-		fail("Not yet implemented");
+	void sortTest() {
+		assertEquals("EHLLO", AnagramChecker.sort("Hello"));
+	}
+	
+	@Test
+	void areAnagrams() {
+		assertTrue(true);
 	}
 
 }
