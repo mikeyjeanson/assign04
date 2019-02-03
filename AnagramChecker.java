@@ -1,6 +1,10 @@
 package assign04;
 
+import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.TreeMap;
+
+import com.sun.java.util.jar.pack.Package.File;
 
 public class AnagramChecker {
 
@@ -60,22 +64,32 @@ public class AnagramChecker {
 	 *         file
 	 */
 	public static String[] getLargestAnagramGroup(String filename) {
-		//open file
-		String file = "";
-		
-		String[] possibleAnagrams = file.split("\n");
+		// open file
+
+		String[] possibleAnagrams = filename.split("\n");
+
+		return possibleAnagrams;
+	}
+
+	public static String[] getLargestAnagramGroup(String[] list) {
 		int i, j;
+
+		TreeMap<String, ArrayList<String>> anagrams = new TreeMap<>();
+		int largestSoFar = 0;
+
+		
 		// search every string for possible anagrams
-		for(i = 0; i < possibleAnagrams.length; i++)
-		{
-			for (j = 0; j < 1; j++)
-			{
-				String str1 = "";
-				String str2 = "";
-				if(areAnagrams(str1, str2))
-				{
-					
+		for (i = 0; i < list.length; i++) {
+			String str1 = sort(list[i]);
+			ArrayList<String> tempList = new ArrayList<>();
+			if (!anagrams.containsKey(str1)) {
+				for (j = 0; j < 1; j++) {
+					String str2 = list[j];
+					if (areAnagrams(str1, str2)) {
+						tempList.add(str2);
+					}
 				}
+				
 			}
 		}
 		return null;
