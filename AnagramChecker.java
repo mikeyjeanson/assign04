@@ -60,6 +60,24 @@ public class AnagramChecker {
 	 *         file
 	 */
 	public static String[] getLargestAnagramGroup(String filename) {
+		//open file
+		String file = "";
+		
+		String[] possibleAnagrams = file.split("\n");
+		int i, j;
+		// search every string for possible anagrams
+		for(i = 0; i < possibleAnagrams.length; i++)
+		{
+			for (j = 0; j < 1; j++)
+			{
+				String str1 = "";
+				String str2 = "";
+				if(areAnagrams(str1, str2))
+				{
+					
+				}
+			}
+		}
 		return null;
 	}
 }

@@ -13,7 +13,8 @@ class AnagramCheckerTest {
 	
 	@Test
 	void areAnagrams() {
-		assertTrue(true);
+		assertTrue(AnagramChecker.areAnagrams("cellar", "caller"));
 	}
 
 }
+ 
