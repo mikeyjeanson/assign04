@@ -1,8 +1,10 @@
 package assign04;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.Scanner;
 import java.util.TreeMap;
 
 //import com.sun.java.util.jar.pack.Package.File;
@@ -67,8 +69,16 @@ public class AnagramChecker {
 	public static String[] getLargestAnagramGroup(String filename) {
 		// open file
 
-		File f = new File("C:/Users/Jose/Documents/GitHub/assign04/sample_word_list.txt");//("C:/Users/Jose/Documents/GitHub/assign04/" + filename);
-		String fileStr = f.toString();
+		File f = new File(filename);
+		
+		String fileStr = "";
+		Scanner scn = new Scanner(filename);
+		
+		while(scn.hasNextLine())
+		{
+			fileStr += scn.nextLine() + "\n";
+		}
+		
 		String[] possibleAnagrams = fileStr.split("\n");
 
 		return getLargestAnagramGroup(possibleAnagrams);

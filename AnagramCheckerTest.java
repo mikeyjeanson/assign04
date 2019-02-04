@@ -10,36 +10,32 @@ class AnagramCheckerTest {
 	void sortTest() {
 		assertEquals("EHLLO", AnagramChecker.sort("Hello"));
 	}
-	
+
 	@Test
 	void areAnagrams() {
 		assertTrue(AnagramChecker.areAnagrams("cellar", "caller"));
 	}
 
 	@Test
-	void testGetLargestAnagramGroup()
-	{
-		String[] strList = {"carets" , 
-				"Caller",
-				"eat",
-				"cellar", 
-				"recall",
-				"Caters",
-				"Ate",
-				"caster",
-				"aspired",
-				"allergy", 
-				"despair"};
+	void testGetLargestAnagramGroup() {
+		String[] strList = { "carets", "Caller", "eat", "cellar", "recall", "Caters", "Ate", "caster", "aspired",
+				"allergy", "despair" };
+
+		String[] anagramList = { "carets", "Caters", "caster" };
+
+		String[] actual = AnagramChecker.getLargestAnagramGroup(strList);
 		
-		String[] anagramList = { "carets", "Caters", "caster"};
-		//assertTrue(anagramList == (AnagramChecker.getLargestAnagramGroup(strList)));
-		assertEquals(anagramList, AnagramChecker.getLargestAnagramGroup(strList));
+		for (int i = 0; i < anagramList.length; i++) {
+			assertEquals(actual[i], anagramList[i]);
+		}
 	}
-	
+
 	@Test
-	void testGetLargestAnagramGroup2()
-	{
-		assertEquals("aspired", AnagramChecker.getLargestAnagramGroup("sample_word_list.txt"));
+	void testGetLargestAnagramGroup2() {
+		String[] strList = { "carets", "Caters", "caster", "crates", "Reacts", "recast", "traces" };
+		String[] actual = AnagramChecker.getLargestAnagramGroup("C:\\Users\\mikey\\Documents\\GitHub\\assign04\\sample_word_list.txt");
+		for (int i = 0; i < strList.length; i++) {
+			assertEquals(strList[i], actual[i]);
+		}
 	}
 }
- 
