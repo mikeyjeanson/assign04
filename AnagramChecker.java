@@ -40,7 +40,15 @@ public class AnagramChecker {
 	 * 
 	 */
 	public static <T> void insertionSort(T[] arr, Comparator<? super T> c) {
-
+		
+		for (int i = 0; i < arr.length; i++) {
+			T z = arr[i];
+			int j;
+			for (j = i - 1; j >= 0 && c.compare(arr[j], z); j--) {
+				arr[j + 1] = arr[j];
+			}
+			arr[j + 1] = z;
+		}
 	}
 
 	/**
@@ -70,53 +78,45 @@ public class AnagramChecker {
 		// open file
 
 		File f = new File(filename);
-		
+
 		String fileStr = "";
 		Scanner scn = new Scanner(filename);
-		
-		while(scn.hasNextLine())
-		{
+
+		while (scn.hasNextLine()) {
 			fileStr += scn.nextLine() + "\n";
 		}
-		
+
 		String[] possibleAnagrams = fileStr.split("\n");
 
 		return getLargestAnagramGroup(possibleAnagrams);
 	}
 
 	public static String[] getLargestAnagramGroup(String[] list) {
-		int i, j;
 
 		TreeMap<String, ArrayList<String>> anagrams = new TreeMap<>();
-		int largestSoFar = 0;
 
-		String keyOfLargest = "";
-		
 		// search every string for possible anagrams
+		int i, j;
 		for (i = 0; i < list.length; i++) {
+			
 			String sortedStr = sort(list[i]);
 			ArrayList<String> tempList = new ArrayList<>();
-			
+
 			if (!anagrams.containsKey(sortedStr)) {
 				for (j = 0; j < list.length; j++) {
 					String checkStr = list[j];
-					
+
 					if (areAnagrams(sortedStr, checkStr)) {
 						tempList.add(checkStr);
 					}
 				}
 				anagrams.put(sortedStr, tempList);
-				if(tempList.size() > largestSoFar)
-				{
-					largestSoFar = tempList.size();
-					keyOfLargest = sortedStr;
 				}
 			}
 		}
 		int arraySize = anagrams.get(keyOfLargest).size();
 		String[] returnList = new String[arraySize];
 		anagrams.get(keyOfLargest).toArray(returnList);
-		
-		return returnList;
-	}
-}
+
+		return null;
+	}}
