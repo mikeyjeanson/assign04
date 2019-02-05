@@ -21,7 +21,7 @@ class AnagramCheckerTest {
 		String[] strList = { "carets", "Caller", "eat", "cellar", "recall", "Caters", "Ate", "caster", "aspired",
 				"allergy", "despair" };
 
-		String[] anagramList = { "carets", "Caters", "caster" };
+		String[] anagramList = { "Caller" , "cellar" , "recall" };
 
 		String[] actual = AnagramChecker.getLargestAnagramGroup(strList);
 		

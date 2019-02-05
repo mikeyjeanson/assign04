@@ -7,8 +7,11 @@ import java.util.Comparator;
 import java.util.Scanner;
 import java.util.TreeMap;
 
-//import com.sun.java.util.jar.pack.Package.File;
-
+/**
+ * 
+ * @author Mikey Jeanson and Jose Mattam
+ *
+ */
 public class AnagramChecker {
 
 	/**
@@ -16,35 +19,39 @@ public class AnagramChecker {
 	 * @param filename
 	 * @return String that is sorted by lexicography
 	 */
-	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public static <T> String sort(String str) {
 		str = str.toUpperCase();
 		char[] arr = str.toCharArray();
-
-		for (int i = 0; i < arr.length; i++) {
-			char z = arr[i];
-			int j;
-			for (j = i - 1; j >= 0 && arr[j] > z; j--) {
-				arr[j + 1] = arr[j];
-			}
-			arr[j + 1] = (char) z;
+		
+		Character[] characters = new Character[arr.length];
+		
+		for (int j = 0; j < arr.length; j++)
+		{
+			characters[j] = arr[j];
 		}
+		
+		insertionSort(characters, (o1, o2) -> Character.valueOf((char) o1).compareTo(Character.valueOf((char) o2)));
+
 		str = "";
 		for (int i = 0; i < arr.length; i++) {
-			str += arr[i];
+			str += characters[i];
 		}
+
 		return str;
 	}
 
 	/**
+	 * Sorts an array of type T, and sorts the array based on the comparator
 	 * 
+	 * @param arr of type T
+	 * @param comparator
 	 */
 	public static <T> void insertionSort(T[] arr, Comparator<? super T> c) {
-		
+
 		for (int i = 0; i < arr.length; i++) {
 			T z = arr[i];
 			int j;
-			for (j = i - 1; j >= 0 && c.compare(arr[j], z); j--) {
+			for (j = i - 1; j >= 0 && c.compare(arr[j], z) > 0; j--) {
 				arr[j + 1] = arr[j];
 			}
 			arr[j + 1] = z;
@@ -80,10 +87,15 @@ public class AnagramChecker {
 		File f = new File(filename);
 
 		String fileStr = "";
-		Scanner scn = new Scanner(filename);
-
-		while (scn.hasNextLine()) {
-			fileStr += scn.nextLine() + "\n";
+		Scanner scn;
+		try {
+			scn = new Scanner(f);
+			
+			while (scn.hasNextLine()) {
+				fileStr += scn.nextLine() + "\n";
+			}
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
 		}
 
 		String[] possibleAnagrams = fileStr.split("\n");
@@ -94,29 +106,45 @@ public class AnagramChecker {
 	public static String[] getLargestAnagramGroup(String[] list) {
 
 		TreeMap<String, ArrayList<String>> anagrams = new TreeMap<>();
+		insertionSort(list, (o1, o2) -> sort(o1).compareTo(sort(o2)));
 
-		// search every string for possible anagrams
+		int largestSoFar = 0;
+		String keyOfLargest = "";
+
 		int i, j;
 		for (i = 0; i < list.length; i++) {
-			
+
 			String sortedStr = sort(list[i]);
-			ArrayList<String> tempList = new ArrayList<>();
+			ArrayList<String> tempList = new ArrayList<>(); // makes the list to add anagrams together
 
 			if (!anagrams.containsKey(sortedStr)) {
-				for (j = 0; j < list.length; j++) {
+				for (j = i; j < list.length; j++) {
 					String checkStr = list[j];
 
 					if (areAnagrams(sortedStr, checkStr)) {
 						tempList.add(checkStr);
+					} else {
+						i = j - 1;
+						break;
 					}
 				}
-				anagrams.put(sortedStr, tempList);
+
+				anagrams.put(sortedStr, tempList); // puts the anagrams into tree map
+
+				if (tempList.size() > largestSoFar) // finds the largest anagram group
+				{
+					largestSoFar = tempList.size();
+					keyOfLargest = sortedStr;
 				}
 			}
 		}
+
 		int arraySize = anagrams.get(keyOfLargest).size();
+
 		String[] returnList = new String[arraySize];
 		anagrams.get(keyOfLargest).toArray(returnList);
 
-		return null;
-	}}
+		return returnList;
+	}
+
+}
