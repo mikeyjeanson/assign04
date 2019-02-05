@@ -19,7 +19,7 @@ public class AnagramChecker {
 	 * @param filename
 	 * @return String that is sorted by lexicography
 	 */
-	public static <T> String sort(String str) {
+	public static String sort(String str) {
 		str = str.toUpperCase();
 		char[] arr = str.toCharArray();
 		
@@ -30,7 +30,7 @@ public class AnagramChecker {
 			characters[j] = arr[j];
 		}
 		
-		insertionSort(characters, (o1, o2) -> Character.valueOf((char) o1).compareTo(Character.valueOf((char) o2)));
+		insertionSort(characters, (o1, o2) -> o1 - o2);
 
 		str = "";
 		for (int i = 0; i < arr.length; i++) {
@@ -82,8 +82,8 @@ public class AnagramChecker {
 	 *         file
 	 */
 	public static String[] getLargestAnagramGroup(String filename) {
+		
 		// open file
-
 		File f = new File(filename);
 
 		String fileStr = "";

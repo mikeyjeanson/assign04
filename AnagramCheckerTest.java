@@ -33,7 +33,7 @@ class AnagramCheckerTest {
 	@Test
 	void testGetLargestAnagramGroup2() {
 		String[] strList = { "carets", "Caters", "caster", "crates", "Reacts", "recast", "traces" };
-		String[] actual = AnagramChecker.getLargestAnagramGroup("C:\\Users\\mikey\\Documents\\GitHub\\assign04\\sample_word_list.txt");
+		String[] actual = AnagramChecker.getLargestAnagramGroup("C:\\Users\\Jose\\Documents\\GitHub\\assign04\\sample_word_list.txt");
 		for (int i = 0; i < strList.length; i++) {
 			assertEquals(strList[i], actual[i]);
 		}
