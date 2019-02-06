@@ -7,13 +7,18 @@ import org.junit.jupiter.api.Test;
 class AnagramCheckerTest {
 
 	@Test
-	void sortTest() {
+	void testSort() {
 		assertEquals("EHLLO", AnagramChecker.sort("Hello"));
 	}
 
 	@Test
-	void areAnagrams() {
+	void testAreAnagrams() {
 		assertTrue(AnagramChecker.areAnagrams("cellar", "caller"));
+	}
+	
+	@Test
+	void testAreAnagrams2() {
+		assertTrue(AnagramChecker.areAnagrams("CELLAR", "caller"));
 	}
 
 	@Test
@@ -31,11 +36,18 @@ class AnagramCheckerTest {
 	}
 
 	@Test
-	void testGetLargestAnagramGroup2() {
+	void testGetLargestAnagramGroupFromFile() {
 		String[] strList = { "carets", "Caters", "caster", "crates", "Reacts", "recast", "traces" };
 		String[] actual = AnagramChecker.getLargestAnagramGroup("C:\\Users\\Jose\\Documents\\GitHub\\assign04\\sample_word_list.txt");
 		for (int i = 0; i < strList.length; i++) {
 			assertEquals(strList[i], actual[i]);
 		}
+	}
+	
+	@Test 
+	void testGetLargestAnagramGroupFromFile2() {
+		String[] strList = {};
+		String[] actual = AnagramChecker.getLargestAnagramGroup("C:\\Users\\Jose\\Documents\\GitHub\\assign04\\empty_text_file.txt");
+		assertEquals(actual, strList);
 	}
 }

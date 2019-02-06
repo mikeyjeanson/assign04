@@ -15,9 +15,8 @@ import java.util.TreeMap;
 public class AnagramChecker {
 
 	/**
-	 * 
-	 * @param filename
-	 * @return String that is sorted by lexicography
+	 * @param String needed to be sorted
+	 * @returns the lexicographically-sorted version of the input string
 	 */
 	public static String sort(String str) {
 		str = str.toUpperCase();
@@ -31,7 +30,6 @@ public class AnagramChecker {
 		}
 		
 		insertionSort(characters, (o1, o2) -> o1 - o2);
-
 		str = "";
 		for (int i = 0; i < arr.length; i++) {
 			str += characters[i];
