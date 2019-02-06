@@ -36,7 +36,8 @@ public class AnagramTimerV2 {
 			startTime = System.nanoTime();
 
 			for (int i = 0; i < timesToLoop - 1; i++) {
-				AnagramChecker.areAnagrams(testStrings[i], testStrings[i + 1]);
+				for(int j = 0; j < sizeOfStr - 1; j++)
+				AnagramChecker.areAnagrams(testStrings[j], testStrings[j + 1]);
 			}
 
 			midpointTime = System.nanoTime();
@@ -53,7 +54,7 @@ public class AnagramTimerV2 {
 			// Average it over the number of runs.
 			double averageTime = ((midpointTime - startTime) - (stopTime - midpointTime)) / (double) timesToLoop;
 
-			System.out.print("areAnagrams\t" + n + "\t" + averageTime);
+			System.out.print("areAnagrams\t" + n + "\t" + averageTime + "\t");
 
 			startTime = System.nanoTime();
 			while (System.nanoTime() - startTime < 1000000000) { // empty block
@@ -64,11 +65,11 @@ public class AnagramTimerV2 {
 			String[] arrayN = new String[n];
 
 			for (int j = 0; j < n; j++) {
-				arrayN[j] = testStrings[j];
+				//arrayN[j] = testStrings[j];
 			}
 
 			for (int i = 0; i < timesToLoop; i++) {
-				AnagramChecker.getLargestAnagramGroup(arrayN);
+				//AnagramChecker.getLargestAnagramGroup(arrayN);
 			}
 
 			midpointTime = System.nanoTime();
