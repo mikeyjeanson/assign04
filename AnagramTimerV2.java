@@ -1,6 +1,5 @@
 package assign04;
 
-import java.io.File;
 import java.util.Random;
 import assign04.AnagramChecker;
 
@@ -54,7 +53,7 @@ public class AnagramTimerV2 {
 			// Average it over the number of runs.
 			double averageTime = ((midpointTime - startTime) - (stopTime - midpointTime)) / (double) timesToLoop;
 
-			System.out.println("areAnagrams\t" + n + "\t" + averageTime);
+			System.out.print("areAnagrams\t" + n + "\t" + averageTime);
 
 			startTime = System.nanoTime();
 			while (System.nanoTime() - startTime < 1000000000) { // empty block
