@@ -5,7 +5,7 @@ import java.util.Random;
 import assign04.AnagramChecker;
 
 /**
- * Timer for Simple Priority Queue
+ * Timer for Simple Priority Queue.
  * 
  * @author Mikey Jeanson and Jose Mattam, Erin Parker
  *
