@@ -8,7 +8,12 @@ class AnagramCheckerTest {
 
 	@Test
 	void testSort() {
-		assertEquals("EHLLO", AnagramChecker.sort("Hello"));
+		assertEquals("Hello", AnagramChecker.sort("Hello"));
+	}
+	
+	@Test
+	void testSort2() {
+		assertEquals("EHllo", AnagramChecker.sort("HEllo"));
 	}
 
 	@Test
@@ -26,7 +31,7 @@ class AnagramCheckerTest {
 		String[] strList = { "carets", "Caller", "eat", "cellar", "recall", "Caters", "Ate", "caster", "aspired",
 				"allergy", "despair" };
 
-		String[] anagramList = { "Caller" , "cellar" , "recall" };
+		String[] anagramList = {  "Caller", "cellar" , "recall" };
 
 		String[] actual = AnagramChecker.getLargestAnagramGroup(strList);
 		
@@ -43,7 +48,7 @@ class AnagramCheckerTest {
 
 	@Test
 	void testGetLargestAnagramGroupFromFile() {
-		String[] strList = { "carets", "Caters", "caster", "crates", "Reacts", "recast", "traces" };
+		String[] strList = { "carets",  "Caters", "caster", "crates",  "Reacts", "recast", "traces" };
 		String[] actual = AnagramChecker.getLargestAnagramGroup("C:\\Users\\Jose\\Documents\\GitHub\\assign04\\sample_word_list.txt");
 		for (int i = 0; i < strList.length; i++) {
 			assertEquals(strList[i], actual[i]);

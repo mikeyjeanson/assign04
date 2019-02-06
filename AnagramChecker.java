@@ -18,7 +18,6 @@ public class AnagramChecker {
 	 * @returns the lexicographically-sorted version of the input string
 	 */
 	public static String sort(String str) {
-		str = str.toUpperCase();
 		char[] arr = str.toCharArray();
 
 		Character[] characters = new Character[arr.length];
@@ -59,8 +58,8 @@ public class AnagramChecker {
 	 * @returns true if s and r are anagrams
 	 */
 	public static boolean areAnagrams(String s, String r) {
-		String t = sort(s);
-		String v = sort(r);
+		String t = sort(s.toUpperCase());
+		String v = sort(r.toUpperCase());
 
 		if (t.equals(v)) {
 			return true;
@@ -107,7 +106,7 @@ public class AnagramChecker {
 	 */
 	public static String[] getLargestAnagramGroup(String[] list) {
 		TreeMap<String, ArrayList<String>> anagrams = new TreeMap<>();
-		insertionSort(list, (o1, o2) -> sort(o1).compareTo(sort(o2)));
+		insertionSort(list, (o1, o2) -> sort(o1.toUpperCase()).compareTo(sort(o2.toUpperCase())));
 
 		int largestSoFar = 1;
 		String keyOfLargest = "";
