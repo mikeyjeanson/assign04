@@ -34,6 +34,12 @@ class AnagramCheckerTest {
 			assertEquals(actual[i], anagramList[i]);
 		}
 	}
+	
+	@Test
+	void testGetLargestAnagramGroupOneElement() {
+		String[] test = { "a" };
+		assertEquals(0, AnagramChecker.getLargestAnagramGroup(test).length);
+	}
 
 	@Test
 	void testGetLargestAnagramGroupFromFile() {
@@ -45,9 +51,51 @@ class AnagramCheckerTest {
 	}
 	
 	@Test 
-	void testGetLargestAnagramGroupFromFile2() {
-		String[] strList = {};
+	void testGetLargestAnagramGroupFromFileEmptyFile() {
 		String[] actual = AnagramChecker.getLargestAnagramGroup("C:\\Users\\Jose\\Documents\\GitHub\\assign04\\empty_text_file.txt");
-		assertEquals(actual, strList);
+		assertEquals(0, actual.length);
+	}
+	
+	@Test 
+	void testGetLargestAnagramGroupFromFileNonExistentFile() {
+		String[] actual = AnagramChecker.getLargestAnagramGroup("C:\\Users\\Jose\\Documents\\GitHub\\assign04\\dne_file.txt");
+		assertEquals(0, actual.length);
+	}
+	
+	@Test
+	void testSortNull() {
+		assertThrows(NullPointerException.class, () -> {
+			AnagramChecker.sort(null);
+		});
+	}
+	
+	@Test
+	void testGetLargestAnagramGroupFromFileNull() {
+		String[] nullList = null;
+		assertThrows(NullPointerException.class, () -> {
+			AnagramChecker.getLargestAnagramGroup(nullList);
+		});
+	}
+	
+	@Test
+	void testGetLargestAnagramGroupFromFileNull2() {
+		String nullFile = null;
+		assertThrows(NullPointerException.class, () -> {
+			AnagramChecker.getLargestAnagramGroup(nullFile);
+		});
+	}
+	
+	@Test
+	void testAreAnagramsNull() {
+		assertThrows(NullPointerException.class, () -> {
+			AnagramChecker.areAnagrams(null, null);
+		});
+	}
+	
+	@Test
+	void testInsertionSortNull() {
+		assertThrows(NullPointerException.class, () -> {
+			AnagramChecker.insertionSort(null, null);
+		});
 	}
 }

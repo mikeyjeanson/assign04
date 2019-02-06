@@ -8,9 +8,8 @@ import java.util.Scanner;
 import java.util.TreeMap;
 
 /**
- * 
+ * This class represents a tool for checking anagrams from files and string arrays.
  * @author Mikey Jeanson and Jose Mattam
- *
  */
 public class AnagramChecker {
 
@@ -21,14 +20,13 @@ public class AnagramChecker {
 	public static String sort(String str) {
 		str = str.toUpperCase();
 		char[] arr = str.toCharArray();
-		
+
 		Character[] characters = new Character[arr.length];
-		
-		for (int j = 0; j < arr.length; j++)
-		{
+
+		for (int j = 0; j < arr.length; j++) {
 			characters[j] = arr[j];
 		}
-		
+
 		insertionSort(characters, (o1, o2) -> o1 - o2);
 		str = "";
 		for (int i = 0; i < arr.length; i++) {
@@ -40,7 +38,6 @@ public class AnagramChecker {
 
 	/**
 	 * Sorts an array of type T, and sorts the array based on the comparator
-	 * 
 	 * @param arr of type T
 	 * @param comparator
 	 */
@@ -57,10 +54,9 @@ public class AnagramChecker {
 	}
 
 	/**
-	 * 
-	 * @param s
-	 * @param r
-	 * @return true if they are anagrams
+	 * @param String s
+	 * @param String r
+	 * @returns true if s and r are anagrams
 	 */
 	public static boolean areAnagrams(String s, String r) {
 		String t = sort(s);
@@ -74,13 +70,12 @@ public class AnagramChecker {
 	}
 
 	/**
-	 * 
 	 * @param filename
-	 * @return the String array of one of the largest anagram collections in the
+	 * @returns the String array of the largest anagram collections in the
 	 *         file
 	 */
 	public static String[] getLargestAnagramGroup(String filename) {
-		
+
 		// open file
 		File f = new File(filename);
 
@@ -88,25 +83,33 @@ public class AnagramChecker {
 		Scanner scn;
 		try {
 			scn = new Scanner(f);
-			
+
 			while (scn.hasNextLine()) {
 				fileStr += scn.nextLine() + "\n";
 			}
 		} catch (FileNotFoundException e) {
-			e.printStackTrace();
+			String[] empty = {};
+			return empty;
 		}
-
+		if (fileStr.equals("")) {
+			String[] empty = {};
+			return empty;
+		}
 		String[] possibleAnagrams = fileStr.split("\n");
 
 		return getLargestAnagramGroup(possibleAnagrams);
 	}
 
+	/**
+	 * @param list of words
+	 * @returns the String array of the largest anagram collections in the
+	 *         file 
+	 */
 	public static String[] getLargestAnagramGroup(String[] list) {
-
 		TreeMap<String, ArrayList<String>> anagrams = new TreeMap<>();
 		insertionSort(list, (o1, o2) -> sort(o1).compareTo(sort(o2)));
 
-		int largestSoFar = 0;
+		int largestSoFar = 1;
 		String keyOfLargest = "";
 
 		int i, j;
@@ -137,6 +140,10 @@ public class AnagramChecker {
 			}
 		}
 
+		if (keyOfLargest.equals("")) {
+			String[] empty = {};
+			return empty;
+		}
 		int arraySize = anagrams.get(keyOfLargest).size();
 
 		String[] returnList = new String[arraySize];
