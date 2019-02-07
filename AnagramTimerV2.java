@@ -65,11 +65,11 @@ public class AnagramTimerV2 {
 			String[] arrayN = new String[n];
 
 			for (int j = 0; j < n; j++) {
-				//arrayN[j] = testStrings[j];
+				arrayN[j] = testStrings[j];
 			}
 
 			for (int i = 0; i < timesToLoop; i++) {
-				//AnagramChecker.getLargestAnagramGroup(arrayN);
+				AnagramChecker.getLargestAnagramGroup(arrayN);
 			}
 
 			midpointTime = System.nanoTime();
